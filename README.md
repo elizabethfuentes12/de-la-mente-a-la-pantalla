@@ -12,6 +12,8 @@
 
 !["Diagrama"](imagenes/diagrama.png)
 
+!["bot"](imagenes/bot.gif)
+
 ---
 
 ## Parte 1: 
