@@ -1,0 +1,102 @@
+{
+    "sessionId": "us-west-2:fe899da4-1501-4d40-8429-71ceb7c69807",
+    "inputTranscript": "perro corriend",
+    "interpretations": [
+        {
+            "nluConfidence": 1.0,
+            "intent": {
+                "name": "text_to_image",
+                "slots": {
+                    "text_explain": {
+                        "shape": "Scalar",
+                        "value": {
+                            "originalValue": "perro corriend",
+                            "resolvedValues": []
+                        }
+                    }
+                },
+                "state": "InProgress",
+                "confirmationState": "None"
+            }
+        },
+        {
+            "intent": {
+                "name": "FallbackIntent",
+                "slots": {},
+                "state": "InProgress",
+                "confirmationState": "None"
+            }
+        }
+    ],
+    "bot": {
+        "name": "cool-image",
+        "version": "DRAFT",
+        "localeId": "en_US",
+        "id": "URWVDZQ7FD",
+        "aliasId": "TSTALIASID",
+        "aliasName": "TestBotAlias"
+    },
+    "responseContentType": "text/plain; charset=utf-8",
+    "proposedNextState": {
+        "prompt": {
+            "attempt": "Retry1"
+        },
+        "intent": {
+            "name": "text_to_image",
+            "slots": {
+                "text_explain": {
+                    "shape": "Scalar",
+                    "value": {
+                        "originalValue": "perro corriend",
+                        "resolvedValues": []
+                    }
+                }
+            },
+            "state": "InProgress",
+            "confirmationState": "None"
+        },
+        "dialogAction": {
+            "type": "ElicitSlot",
+            "slotToElicit": "text_explain"
+        }
+    },
+    "sessionState": {
+        "sessionAttributes": {},
+        "intent": {
+            "name": "text_to_image",
+            "slots": {
+                "text_explain": {
+                    "shape": "Scalar",
+                    "value": {
+                        "originalValue": "perro corriend",
+                        "resolvedValues": []
+                    }
+                }
+            },
+            "state": "InProgress",
+            "confirmationState": "None"
+        },
+        "originatingRequestId": "9041035e-e509-44f1-ba53-6d566a642499"
+    },
+    "messageVersion": "1.0",
+    "invocationSource": "DialogCodeHook",
+    "transcriptions": [
+        {
+            "resolvedContext": {
+                "intent": "text_to_image"
+            },
+            "transcriptionConfidence": 1.0,
+            "transcription": "perro corriend",
+            "resolvedSlots": {
+                "text_explain": {
+                    "shape": "Scalar",
+                    "value": {
+                        "originalValue": "perro corriend",
+                        "resolvedValues": []
+                    }
+                }
+            }
+        }
+    ],
+    "inputMode": "Text"
+}

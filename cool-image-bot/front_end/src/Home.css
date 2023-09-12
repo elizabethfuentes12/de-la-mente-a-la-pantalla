@@ -1,0 +1,23 @@
+div[data-id="chat-window"]{
+
+    /* border: 1px solid red !important; */
+    height: 550px;
+  }
+
+
+  div[data-sender="user"]{
+    background-color:rgb(181, 235, 253) !important;
+  }
+
+
+  div[data-sender="bot"]{
+    background-color:lightgreen !important;
+  }
+
+  div.bot-message {
+    display: grid;
+  }
+
+  div.bot-message img {
+    margin: 0 auto;
+  }
