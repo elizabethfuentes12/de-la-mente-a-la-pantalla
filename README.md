@@ -12,7 +12,7 @@
 
 !["Diagrama"](imagenes/diagrama.png)
 
-!["bot"](imagenes/bot.gif)
+!["bot"](imagenes/demo_bot.gif)
 
 ---
 
