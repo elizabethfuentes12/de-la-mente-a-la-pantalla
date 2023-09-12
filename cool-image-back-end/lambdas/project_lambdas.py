@@ -28,5 +28,6 @@ class Lambdas(Construct):
 
         self.cool_image_hook = aws_lambda.Function(
             self, "Transcribe", handler="lambda_function.lambda_handler",
+            description = "Esta Lambda maneja la convesación del bot Cool Image de Amazon Lex, traduce con Amazon Translate e invoca el endopoint de Amazon SageMaker",
             code=aws_lambda.Code.from_asset("./lambdas/code/cool_image_hook"),
             **COMMON_LAMBDA_CONF)

@@ -3,11 +3,11 @@ import os
 
 import aws_cdk as cdk
 
-from back_end.back_end_stack import BackEndStack
+from cool_image_back_end.cool_image_back_end_stack import CoolImageBackEnd
 
 
 app = cdk.App()
-BackEndStack(app, "BackEndStack",
+CoolImageBackEnd(app, "CoolImageBackEnd",
     # If you don't specify 'env', this stack will be environment-agnostic.
     # Account/Region-dependent features and context lookups will not work,
     # but a single synthesized template can be deployed anywhere.
