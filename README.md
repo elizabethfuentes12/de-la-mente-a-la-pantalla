@@ -61,7 +61,7 @@ Cuando termine de desplegarse verás un mensaje como este:
 
 !["Deployment"](imagenes/deployment.jpg)
 
-Los datos desplegados los vas a copiar en el [aws-exports.js](cool-image-bot/front_end/src/aws-exports.js): 
+Con los datos desplegados crea un archivo con nombre **aws-exports.js** dentro de la carpeta **cool-image-bot/front_end/src/** los vas a copiar en el [aws-exports.js](cool-image-bot/front_end/src/aws-exports.js): 
 
 ```
 "aws_project_region": "us-west-2",
@@ -87,8 +87,7 @@ Para esta parte ve a la carpeta front_end:
 ```
 cd front_end
 ```
-
-
+Dentro de la carpeta **cool-image-bot/front_end/src/** crea el archivo **aws-exports.js** 
 
 
 ----
