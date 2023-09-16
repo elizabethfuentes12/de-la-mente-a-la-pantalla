@@ -7,7 +7,7 @@
 
 ![Diagram translator chatbot app"](imagenes/portada.png)
 
-> 🧑🏻‍💻 Gracias a [ensamblador](https://github.com/ensamblador) por su ayuda desarrollando el frontend de esta aplicación.
+> 🧑🏻‍💻 **Gracias a [ensamblador](https://github.com/ensamblador) por su ayuda desarrollando el frontend de esta aplicación.**
 
 ---
 ## La Soloción
