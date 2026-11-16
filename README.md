@@ -80,6 +80,8 @@ Si tienes windows:
 pip install -r requirements.txt
 ```
 
+> ℹ️ El stack publica la carpeta `front_end/build` en S3/CloudFront, así que debe existir antes del primer `cdk synth`. Crea un `front_end/src/aws-exports.js` provisional con la plantilla del Paso 2 (los valores se reemplazan después del despliegue) y ejecuta `cd front_end && npm install && DISABLE_ESLINT_PLUGIN=true npm run build && cd ..`. La variable `DISABLE_ESLINT_PLUGIN=true` evita un error de `eslint-config-react-app` (`Environment key "jest/globals" is unknown`) con versiones nuevas de Node.
+
 ✅ Sintentiza el template de Cloudformation con el siguiente comando: 
 
 ```
@@ -178,6 +180,15 @@ cdk destroy
 ```
 
 ----
+
+## Actualización (noviembre 2026)
+
+- Runtime de las Lambdas: `python3.8` (deprecado el 14-10-2024) → `python3.13`. Fechas de deprecación: [Lambda runtimes](https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html?trk=87c4c426-cddf-4799-a299-273337552ad8&sc_channel=el).
+- Layer de Pillow reconstruido para `python3.13` x86_64 (Pillow 12.2.0) con el método de la documentación: `pip install pillow --platform manylinux2014_x86_64 --only-binary=:all: -t python/` ([Working with layers for Python](https://docs.aws.amazon.com/lambda/latest/dg/python-layers.html?trk=87c4c426-cddf-4799-a299-273337552ad8&sc_channel=el)).
+- Se eliminó la dependencia de numpy: el layer administrado `AWSLambda-Python38-SciPy1x` solo existe para Python 3.8. La imagen ahora se arma con `PIL.Image.frombytes` a partir de la respuesta del endpoint (resultado idéntico pixel a pixel al `fromarray` anterior).
+- `aws-cdk-lib` 2.94.0 → 2.277.0.
+- Verificado con `cdk synth` (las 3 funciones del template en `python3.13`, sin referencias al layer de SciPy) e importando los handlers bajo Python 3.13 con el nuevo layer. No desplegado: el endpoint de SageMaker (`ml.p3.2xlarge`) tiene costo.
+- Pendiente a evaluar: reemplazar el endpoint de SageMaker con Stable Diffusion 2.1 por un modelo de imágenes en [Amazon Bedrock](https://docs.aws.amazon.com/bedrock/latest/userguide/models-supported.html?trk=87c4c426-cddf-4799-a299-273337552ad8&sc_channel=el) (sin instancias GPU). `aws_cloudfront_origins.S3Origin` muestra un aviso de deprecación en CDK; sigue funcionando.
 
 ## 🚨¿Te gusto? 👩🏻‍💻 ¿Tienes comentarios?🎤 cuéntamelo todo --> [acá](https://pulse.aws/survey/IVZZ290E)
 
