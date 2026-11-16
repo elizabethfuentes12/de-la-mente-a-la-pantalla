@@ -1,1 +1,1 @@
-from layers.project_layers import (Pillow, bs4_requests,Numpylayer)
+from layers.project_layers import (Pillow, bs4_requests)

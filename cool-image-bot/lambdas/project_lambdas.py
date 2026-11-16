@@ -11,7 +11,7 @@ from aws_cdk import (
 
 from constructs import Construct
 
-from layers import (Pillow,Numpylayer)
+from layers import (Pillow)
 
 
 LAMBDA_TIMEOUT= 60
@@ -21,7 +21,7 @@ BASE_LAMBDA_CONFIG = dict (
     memory_size=256,
     tracing= aws_lambda.Tracing.ACTIVE)
 
-COMMON_LAMBDA_CONF = dict (runtime=aws_lambda.Runtime.PYTHON_3_8, **BASE_LAMBDA_CONFIG)
+COMMON_LAMBDA_CONF = dict (runtime=aws_lambda.Runtime.PYTHON_3_13, **BASE_LAMBDA_CONFIG)
 
 
 class Lambdas(Construct):
@@ -30,11 +30,10 @@ class Lambdas(Construct):
         super().__init__(scope, construct_id, **kwargs)
 
         pil = Pillow(self, 'PilLay')
-        numpy_layer = Numpylayer(self, 'numpy_layer')
 
         common = aws_lambda.LayerVersion(
             self, "common-layer", code=aws_lambda.Code.from_asset("./layers/common/"),
-            compatible_runtimes = [aws_lambda.Runtime.PYTHON_3_8,aws_lambda.Runtime.PYTHON_3_9], 
+            compatible_runtimes = [aws_lambda.Runtime.PYTHON_3_13], 
             description = 'librerias adicionales', layer_version_name = "librerias-adicionales"
         )
         
@@ -44,7 +43,7 @@ class Lambdas(Construct):
             self, "Transcribe", handler="lambda_function.lambda_handler",
             description = "Esta Lambda maneja la convesación del bot Cool Image de Amazon Lex, traduce con Amazon Translate e invoca el endopoint de Amazon SageMaker",
             code=aws_lambda.Code.from_asset("./lambdas/code/cool_image_hook"),
-            layers= [common, pil.layer,numpy_layer.layer],
+            layers= [common, pil.layer],
             **COMMON_LAMBDA_CONF)
         
         self.list_bots  = aws_lambda.Function(

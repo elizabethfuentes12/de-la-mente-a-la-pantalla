@@ -8,7 +8,6 @@ from io import BytesIO
 import base64
 from PIL import Image as OpenImage
 import time
-import numpy as np
 
 ENDPOINT_TEXT_TO_TEXT = os.environ.get('ENV_ENDPOINT_TEXT_TO_TEXT')
 ENDPOINT_TEXT_TO_IMAGE = os.environ.get('ENV_ENDPOINT_TEXT_TO_IMAGE')
@@ -69,11 +68,15 @@ def fun_text_to_image(ENDPOINT_TEXT_TO_IMAGE,text):
     print(query_response)
     response_dict = json.loads(query_response['Body'].read())
 
-    x = np.asarray(response_dict['generated_images'][0], dtype=np.uint8)
+    # generated_images[0] is a nested list of pixels (height x width x RGB, 0-255).
+    # Build the image with Pillow only (no numpy layer needed).
+    pixels = response_dict['generated_images'][0]
+    height, width = len(pixels), len(pixels[0])
+    raw = bytes(channel for row in pixels for pixel in row for channel in pixel)
     
     #Save Image
     file_name = time.strftime("%Y%m%d-%H%M%S") +'.png'
-    OpenImage.fromarray(x).save('/tmp/' + file_name)
+    OpenImage.frombytes("RGB", (width, height), raw).save('/tmp/' + file_name)
             
     s3 = boto3.client("s3")
 
